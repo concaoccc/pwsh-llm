@@ -51,7 +51,7 @@ After setting up, you can use the following functions provided by the `pwsh-llm.
     Show-GptHelp
     ```
 ### Example
-```ps1
+```powershell
 PS C:\Users\*> gpt-test
 Q: Let's begin the chat
 A: Sure, I'm here to help! What do you need assistance with today?
@@ -60,36 +60,33 @@ To log in to Azure using PowerShell, you can use the `Connect-AzAccount` cmdlet.
 
 1. **Install Azure PowerShell Module**: If you haven't already installed the Azure PowerShell module, you need to do that first. Open your PowerShell and run the following command:
 
-   ```powershell
+   
    Install-Module -Name Az -AllowClobber -Force
-   ```
 
 2. **Import the Module**: Once the module is installed, you should import it into your PowerShell session:
 
-   ```powershell
+   
    Import-Module Az
-   ```
+   
 
 3. **Log in to Azure**: Use the `Connect-AzAccount` cmdlet to log in to your Azure account. Simply run:
 
-   ```powershell
+
    Connect-AzAccount
-   ```
+
 
    This command will open a new window prompting you to enter your Azure credentials. After entering your username and password, you will be logged in.
 
 4. **Verify Login**: To verify that you have successfully logged in, you can run:
 
-   ```powershell
    Get-AzContext
-   ```
+   
 
    This command will display information about the current Azure session, including the account and subscription details.
 
 code Example:
 Here is a full example of the steps combined:
 
-```powershell
 # Step 1: Install the Azure PowerShell module (if not already installed)
 Install-Module -Name Az -AllowClobber -Force
 
@@ -101,7 +98,7 @@ Connect-AzAccount
 
 # Step 4: Verify the login
 Get-AzContext
-```
+
 
 ### Notes:
 - If you encounter any issues during installation, make sure you are running PowerShell as an administrator.
