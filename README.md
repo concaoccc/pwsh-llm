@@ -86,7 +86,7 @@ To log in to Azure using PowerShell, you can use the `Connect-AzAccount` cmdlet.
 
    This command will display information about the current Azure session, including the account and subscription details.
 
-### Example:
+code Example:
 Here is a full example of the steps combined:
 
 ```powershell
