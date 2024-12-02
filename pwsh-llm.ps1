@@ -7,16 +7,16 @@
 # $response = Invoke-AzureOpenAI -apiKey $apiKey -endpoint $endpoint -prompt $prompt
 # Write-Output $response
 
-if (-not $env:Azure_OpenAI_ApiKey -or -not $env:Azure_OpenAI_Endpoint) {
+$global:apiKey =  [System.Environment]::GetEnvironmentVariable("Azure_OpenAI_ApiKey", [System.EnvironmentVariableTarget]::Machine)
+$global:endpoint = [System.Environment]::GetEnvironmentVariable("Azure_OpenAI_Endpoint", [System.EnvironmentVariableTarget]::Machine)
+if (-not $global:apiKey -or -not $global:endpoint) {
     Write-Error "API key or endpoint is not set. Please set the environment variables 'Azure_OpenAI_ApiKey' and 'Azure_OpenAI_Endpoint'."
     exit 1
 }
 
-$global:apiKey =  [System.Environment]::GetEnvironmentVariable("Azure_OpenAI_ApiKey", [System.EnvironmentVariableTarget]::Machine)
-$endpoint = [System.Environment]::GetEnvironmentVariable("Azure_OpenAI_Endpoint", [System.EnvironmentVariableTarget]::Machine)
 $global:currentMehtod = "get-test"
 $global:messgaes = @()
-[int]$global:maxTokens = 5000
+[int]$global:maxTokens = 4096
 [double]$global:temperature = 0.7
 
 $global:chat_system_prompt = "Here is your role: 
@@ -108,8 +108,8 @@ function Invoke-AzureOpenAI {
     }
 
     $body = @{
-        "messages" = $global:messages
-        "max_tokens"  = $global:lobalmaxTokens
+        "messages" = $global:messgaes
+        "max_tokens"  = $global:maxTokens
         "temperature" = $global:temperature
     } | ConvertTo-Json
 
@@ -175,4 +175,12 @@ function gpt-quit {
     Write-Output "Cleaning up chat context and exiting..."
     $messages = @()
     $currentMehtod = "get-chat"
+}
+
+function Show-GptHelp {
+    Write-Output "Available commands:
+    - gpt-test: Start a test chat session.
+    - gpt-fix: Provide an error message to get assistance in fixing the issue.
+    - gpt-chat: Start a chat session with the assistant.
+    - gpt-quit: Quit the chat session and clean up the context."
 }
