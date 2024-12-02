@@ -33,12 +33,12 @@ After setting up, you can use the following functions provided by the `pwsh-llm.
 
 - **gpt-fix**: Provide an error message to get assistance in fixing the issue.
     ```powershell
-    gpt-fix -errorMessage "Your error message here"
+    gpt-fix "Your error message here"
     ```
 
 - **gpt-chat**: Start a chat session with the assistant.
     ```powershell
-    gpt-chat -message "Your message here"
+    gpt-chat "Your message here"
     ```
 
 - **gpt-quit**: Quit the chat session and clean up the context.
@@ -50,6 +50,10 @@ After setting up, you can use the following functions provided by the `pwsh-llm.
     ```powershell
     Show-GptHelp
     ```
+### Example
+```ps1
+
+```
 ## Contributing
 Feel free to submit issues or pull requests if you have any improvements or suggestions.
 
