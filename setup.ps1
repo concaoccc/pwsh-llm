@@ -8,23 +8,17 @@ if (-not ([System.Environment]::GetEnvironmentVariable("Azure_OpenAI_ApiKey", [S
 }
 
 $sourcePath = "pwsh-llm.ps1"
-$destinationPath = "$HOME\Documents\PowerShell\pwsh-llm.ps1"
+$destinationPath = "$PSHOME\pwsh-llm.ps1"
 Copy-Item -Path $sourcePath -Destination $destinationPath -Force
 
 # Copy pwsh-llm.ps1 to ~\Documents\PowerShell\pwsh-llm.ps1
-$PowerShell_profile_path = "$HOME\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
-$Windows_PowerShell_profile_path = "$HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+$PowerShell_profile_path = "$PSHOME\profile.ps1"
 
-function Append_powershell_profile($profile_path) {
-    if (-not (Test-Path -Path $Windows_PowerShell_profile_path)) {
-        New-Item -Path $Windows_PowerShell_profile_path -ItemType File
-        $importLine = "`n. `$HOME\Documents\PowerShell\pwsh-llm.ps1"
-        Add-Content -Path $Windows_PowerShell_profile_path -Value $importLine
-    } elseif (-not (Get-Content -Path $Windows_PowerShell_profile_path -Raw).Contains("pwsh-llm")) {
-        $importLine = "`n. `$HOME\Documents\PowerShell\pwsh-llm.ps1"
-        Add-Content -Path $Windows_PowerShell_profile_path -Value $importLine
-    }
+if (-not (Test-Path -Path $PowerShell_profile_path)) {
+    New-Item -Path $PowerShell_profile_path -ItemType File
+    $importLine = "`n. `$PSHOME\pwsh-llm.ps1"
+    Add-Content -Path $PowerShell_profile_path -Value $importLine
+} elseif (-not (Get-Content -Path $PowerShell_profile_path -Raw).Contains("pwsh-llm")) {
+    $importLine = "`n. `$PSHOME\pwsh-llm.ps1"
+    Add-Content -Path $PowerShell_profile_path -Value $importLine
 }
-
-Append_powershell_profile $PowerShell_profile_path
-Append_powershell_profile $Windows_PowerShell_profile_path
