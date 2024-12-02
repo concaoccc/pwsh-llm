@@ -18,6 +18,7 @@ To set up this tool, you need to run the `setup.ps1` script. This script will pr
     .\setup.ps1
     ```
 3. Follow the prompts to enter your Azure OpenAI Endpoint and API Key.
+4. Reopen the terminal
 
 ## Usage
 
